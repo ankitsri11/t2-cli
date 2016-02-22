@@ -289,6 +289,17 @@ makeCommand('update')
     flag: true,
     help: 'Update to the latest version regardless of current version.'
   })
+  .option('openwrtPath', {
+    abbr: 'op',
+    required: false,
+    flag: false,
+    help: 'Update with the OpenWRT image at the indicated local path.'
+  })
+  .option('firmwarePath', {
+    abbr: 'fp',
+    required: false,
+    help: 'Update with the firmware image at the indicated local path.'
+  })
   .callback(function(opts) {
     if (opts.list) {
       callControllerWith('printAvailableUpdates');

@@ -763,8 +763,8 @@ exports['Tessel.update'] = {
     this.writeFlash = sinon.stub(this.tessel, 'writeFlash').returns(Promise.resolve());
 
     this.newImage = {
-      openwrt: new Buffer(0),
-      firmware: new Buffer(0)
+      openwrt: new Buffer(1),
+      firmware: new Buffer(1)
     };
 
     done();
@@ -809,9 +809,9 @@ exports['Tessel.update'] = {
     this.tessel.update(this.newImage)
       // Update completed as expected
       .then(() => {
-        test.ok(this.updateFirmware.callCount, 1);
-        test.ok(this.enterBootloader.callCount, 1);
-        test.ok(this.writeFlash.callCount, 1);
+        test.equal(this.updateFirmware.callCount, 1);
+        test.equal(this.enterBootloader.callCount, 1);
+        test.equal(this.writeFlash.callCount, 1);
         test.done();
       })
       .catch(() => {
